@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leaderboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #073b3a;
+            color: #d4af37;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: normal;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            font-weight: normal;
+            border-bottom: 2px solid #d4af37;
+            padding: 12px;
+        }
+
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #52706e;
+        }
+
+        th:first-child,
+        td:first-child {
+            width: 60px;
+            text-align: center;
+        }
+
+        th:last-child,
+        td:last-child {
+            text-align: right;
+        }
+
+        .first {
+            font-size: 1.15em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 30px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>LEADERBOARD</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Team</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+
+        <tbody id="leaderboard">
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    fetch("leaderboard.json")
+        .then(response => response.json())
+        .then(data => {
+
+            data.sort((a, b) => b.score - a.score);
+
+            const leaderboard = document.getElementById("leaderboard");
+
+            data.forEach((team, index) => {
+
+                const row = document.createElement("tr");
+
+                if (index === 0) {
+                    row.classList.add("first");
+                }
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${team.name}</td>
+                    <td>${team.score}</td>
+                `;
+
+                leaderboard.appendChild(row);
+            });
+        });
+</script>
+
+</body>
+</html>
