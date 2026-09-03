@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Team Alpha",
+        "score": 125
+    },
+    {
+        "name": "Team Bravo",
+        "score": 110
+    },
+    {
+        "name": "Team Charlie",
+        "score": 95
+    },
+    {
+        "name": "Team Delta",
+        "score": 80
+    },
+    {
+        "name": "Team Echo",
+        "score": 65
+    },
+    {
+        "name": "Team Foxtrot",
+        "score": 50
+    }
+]
